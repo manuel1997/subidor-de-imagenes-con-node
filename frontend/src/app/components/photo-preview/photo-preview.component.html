@@ -1,0 +1,31 @@
+<div class="row" *ngIf="!photo; else main_content">
+    <h1>loading....</h1>
+</div>
+
+<ng-template #main_content>
+    <div class="row" >
+        <div class="col-md-5">
+            <div class="card">
+                <img [src]="'http://localhost:3000/uploads/' + photo.img" class="img-fluid">
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <form (submit)="updatephoto()">
+                        <div class="form-group">
+                            <input type="text"  class="form-control"  [(ngModel)]="photo.title" name="title"  [value]="photo.title">
+                        </div>
+                        <div class="form-group">
+                           <textarea rows="2" class="form-control" [(ngModel)]="photo.descripcion" name="descripcion" [value]="photo.descripcion"></textarea>
+                        </div>
+                        <button class="btn btn-primary btn-block">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-danger" (click)="deletephoto(photo._id)" >Delete</button>
+</ng-template>
+
+
